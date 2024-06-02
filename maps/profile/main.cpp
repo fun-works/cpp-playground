@@ -11,7 +11,9 @@
 #include <unordered_map>
 
 using namespace std::chrono;
-using namespace std; 
+using namespace std;
+
+#define MAX_SIZE (1000000)
 
 class Employee
 {
@@ -25,17 +27,6 @@ class Employee
 
 typedef void (*FuncToExecute)(void);
 
-void execute_function(FuncToExecute aFn)
-{
-    auto start = high_resolution_clock::now();
-    aFn();
-    auto stop = high_resolution_clock::now();
-
-   auto duration = duration_cast<microseconds>(stop - start);
-    cout << "Time taken by test_map_insert: "
-         << duration.count() << " microseconds" << endl;
-}
-
 #define PROFILE(fn) \
 do{ \
     auto start = high_resolution_clock::now(); \
@@ -47,10 +38,19 @@ do{ \
          << duration.count() << " microseconds" << endl; \
 }while(0)
 
+void execute_function(FuncToExecute aFn)
+{
+    auto start = high_resolution_clock::now();
+    aFn();
+    auto stop = high_resolution_clock::now();
+
+   auto duration = duration_cast<microseconds>(stop - start);
+    cout << "Time taken by test_map_insert: "
+         << duration.count() << " microseconds" << endl;
+}
+
 std::map<uint32_t, Employee> empData;
 unordered_map<uint32_t, Employee> empData1;
-
-#define MAX_SIZE (1000000)
 
 void test_map_insert()
 {
@@ -71,33 +71,24 @@ void test_unordered_map_insert()
 void test_map_find()
 {        
     auto val = empData.find(MAX_SIZE);
-    val = empData.find(MAX_SIZE);
-    val = empData.find(MAX_SIZE);
-    val = empData.find(MAX_SIZE);
-    val = empData.find(MAX_SIZE);
-    val = empData.find(MAX_SIZE);
-    val = empData.find(MAX_SIZE);
-    val = empData.find(MAX_SIZE);
-    val = empData.find(MAX_SIZE);
+    for(size_t itr = 1; itr < MAX_SIZE; itr++) {
+        val = empData.find(MAX_SIZE);
+    }
 }
 
 void test_unordered_map_find()
-{        
+{
     auto val = empData1.find(MAX_SIZE);
-    val = empData1.find(MAX_SIZE);
-    val = empData1.find(MAX_SIZE);
-    val = empData1.find(MAX_SIZE);
-    val = empData1.find(MAX_SIZE);
-    val = empData1.find(MAX_SIZE);
-    val = empData1.find(MAX_SIZE);
-    val = empData1.find(MAX_SIZE);
-    val = empData1.find(MAX_SIZE);
+    for(size_t itr = 1; itr < MAX_SIZE; itr++) {
+        val = empData1.find(MAX_SIZE);
+    }
 }
 
 int main()
 {
     PROFILE(test_map_insert);
     PROFILE(test_unordered_map_insert);
+
     PROFILE(test_map_find);
     PROFILE(test_unordered_map_find);
 
