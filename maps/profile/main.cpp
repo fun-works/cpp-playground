@@ -13,7 +13,7 @@
 using namespace std::chrono;
 using namespace std;
 
-#define MAX_SIZE (1000000)
+#define MAX_SIZE (100000000)
 
 class Employee
 {
