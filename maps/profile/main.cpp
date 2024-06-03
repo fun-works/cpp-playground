@@ -1,12 +1,9 @@
 // C++ program to illustrate the use of unique_ptr 
 #include <iostream> 
-#include <memory> 
-#include <stdint.h>
-#include <stdio.h>
+#include <memory>
 #include <map>
 #include <algorithm>
 #include <iostream>
-#include <vector>
 #include <unordered_map>
 
 #include "../../include/profile.hpp"
@@ -20,12 +17,11 @@ size_t gSampleSize = MAX_SIZE;
 size_t aCopyCount = 0;
 
 size_t TotalCopyOperations()
-    {
-        size_t val = aCopyCount;
-        aCopyCount = 0;
-        return val;
-    }
-
+{
+    size_t val = aCopyCount;
+    aCopyCount = 0;
+    return val;
+}
 
 class Employee
 {
@@ -41,7 +37,6 @@ class Employee
     {
         aCopyCount++;
     }
-    
 };
 
 typedef void (*FuncToExecute)(void);

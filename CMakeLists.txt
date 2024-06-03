@@ -4,4 +4,5 @@ project(profile_map)
 
 enable_testing()
  
-add_subdirectory(maps/profile) 
+add_subdirectory(maps/profile)
+add_subdirectory(vectors/profile) 
