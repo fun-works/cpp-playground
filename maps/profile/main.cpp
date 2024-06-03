@@ -5,10 +5,11 @@
 #include <stdio.h>
 #include <map>
 #include <algorithm>
-#include <chrono>
 #include <iostream>
-#include<vector>
+#include <vector>
 #include <unordered_map>
+
+#include "../../include/profile.hpp"
 
 using namespace std::chrono;
 using namespace std;
@@ -45,21 +46,10 @@ class Employee
 
 typedef void (*FuncToExecute)(void);
 
-#define PROFILE(fn) \
-do{ \
-    auto start = high_resolution_clock::now(); \
-    fn(); \
-    auto stop = high_resolution_clock::now(); \
- \
-   auto duration = duration_cast<microseconds>(stop - start); \
-    cout << "Time taken by " << #fn << ": " \
-         << duration.count() << " microseconds" << endl; \
-}while(0)
-
 void execute_function(FuncToExecute aFn)
 {
     auto start = high_resolution_clock::now();
-    aFn();
+    aFn;
     auto stop = high_resolution_clock::now();
 
    auto duration = duration_cast<microseconds>(stop - start);
@@ -104,6 +94,7 @@ void test_unordered_map_find()
 
 int main(int argc, char* argv[])
 {
+    uint32_t time_aken;
     if(argc > 2) {
         cout<<"Usage: ./program <sample-count>"<<endl;
         return 1;
@@ -115,13 +106,17 @@ int main(int argc, char* argv[])
     cout<<"Testing for "<< gSampleSize << " samples"<<endl;
     empData1.reserve(gSampleSize);
 
-    PROFILE(test_map_insert);
+    PROFILE(test_map_insert(), time_aken);
     cout << "test_map_insert copies: " << TotalCopyOperations() << endl;
-    PROFILE(test_unordered_map_insert);
-    cout << "test_unordered_map_insert copies: " << TotalCopyOperations() << endl;
+    cout << "test_map_insert execution time: " << time_aken << endl;
+    PROFILE(test_map_find(), time_aken);
+    cout << "test_map_find execution time: " << time_aken << endl;
 
-    PROFILE(test_map_find);
-    PROFILE(test_unordered_map_find);
+    PROFILE(test_unordered_map_insert(), time_aken);
+    cout << "test_unordered_map_insert copies: " << TotalCopyOperations() << endl;
+    cout << "test_unordered_map_insert execution time: " << time_aken << endl;
+    PROFILE(test_unordered_map_find(), time_aken);
+    cout << "test_unordered_map_find execution time: " << time_aken << endl;
 
     return 0;
 }
