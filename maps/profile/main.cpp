@@ -14,6 +14,7 @@ using namespace std::chrono;
 using namespace std;
 
 #define MAX_SIZE (900000)
+size_t gSampleSize = MAX_SIZE;
 
 size_t aCopyCount = 0;
 
@@ -71,7 +72,7 @@ unordered_map<uint32_t, Employee> empData1;
 
 void test_map_insert()
 {
-    for(uint32_t itr = 0; itr < MAX_SIZE; itr++)
+    for(uint32_t itr = 0; itr < gSampleSize; itr++)
     {
         empData.insert(make_pair(itr, Employee(itr, "abcd", itr+5000)));
     }
@@ -79,7 +80,7 @@ void test_map_insert()
 
 void test_unordered_map_insert()
 {    
-    for(uint32_t itr = 0; itr < MAX_SIZE; itr++)
+    for(uint32_t itr = 0; itr < gSampleSize; itr++)
     {
         empData1.emplace(make_pair(itr, Employee{itr, "abcd", itr+5000}));
     }
@@ -87,24 +88,32 @@ void test_unordered_map_insert()
 
 void test_map_find()
 {        
-    auto val = empData.find(MAX_SIZE);
-    for(uint32_t itr = 1; itr < MAX_SIZE; itr++) {
-        val = empData.find(MAX_SIZE);
+    auto val = empData.find(gSampleSize);
+    for(uint32_t itr = 1; itr < gSampleSize; itr++) {
+        val = empData.find(gSampleSize);
     }
 }
 
 void test_unordered_map_find()
 {
-    auto val = empData1.find(MAX_SIZE);
-    for(uint32_t itr = 1; itr < MAX_SIZE; itr++) {
-        val = empData1.find(MAX_SIZE);
+    auto val = empData1.find(gSampleSize);
+    for(uint32_t itr = 1; itr < gSampleSize; itr++) {
+        val = empData1.find(gSampleSize);
     }
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-    cout<<"Testing for "<< MAX_SIZE << " samples"<<endl;
-    empData1.reserve(MAX_SIZE);
+    if(argc > 2) {
+        cout<<"Usage: ./program <sample-count>"<<endl;
+        return 1;
+    }
+    if(argc == 2) {
+        gSampleSize = strtoul(argv[1], nullptr, 0);
+    }
+
+    cout<<"Testing for "<< gSampleSize << " samples"<<endl;
+    empData1.reserve(gSampleSize);
 
     PROFILE(test_map_insert);
     cout << "test_map_insert copies: " << TotalCopyOperations() << endl;
