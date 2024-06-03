@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 3.10) 
- 
-project(profile_vector) 
- 
-add_executable(profile_vector main.cpp) 
+add_executable(profile_vector main.cpp)
+
+add_test( NAME profile_vector
+          COMMAND $<TARGET_FILE:profile_vector>)

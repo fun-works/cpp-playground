@@ -47,37 +47,39 @@ void execute_function(FuncToExecute aFn)
     auto stop = high_resolution_clock::now();
 
    auto duration = duration_cast<microseconds>(stop - start);
-    cout << "Time taken by test_vector_insert: "
+    cout << "Time taken by test_vector_push: "
          << duration.count() << " microseconds" << endl;
 }
 
 std::vector<Employee> empData;
 std::vector<Employee> empData1;
 
-void test_vector_insert()
+void test_vector_push()
 {
     for(uint32_t itr = 0; itr < gSampleSize; itr++)
     {
         empData.push_back(Employee(itr, "abcd", itr+5000));
     }
+    cout<< "Size: "<< empData.size() << " Capacity: " << empData.capacity() << endl;
 }
 
-void test_vector_find()
+void test_vector_pop()
 {
     for(auto itr = empData.begin(); itr != empData.end(); itr++) {
         empData.pop_back();
     }
 }
 
-void test_reserved_vector_insert()
+void test_reserved_vector_push()
 {    
     for(uint32_t itr = 0; itr < gSampleSize; itr++)
     {
         empData1.push_back(Employee(itr, "abcd", itr+5000));
     }
+    cout<< "Size: "<< empData1.size() << " Capacity: " << empData1.capacity() << endl;
 }
 
-void test_reserved_vector_find()
+void test_reserved_vector_pop()
 {
     for(auto itr = empData.begin(); itr != empData.end(); itr++) {
         empData1.pop_back();
@@ -97,19 +99,19 @@ int main(int argc, char* argv[])
 
     cout<<"Testing for "<< gSampleSize << " samples"<<endl;
     
-    PROFILE(test_vector_insert(), time_aken);
-    cout << "test_vector_insert copies: " << TotalCopyOperations() << endl;
-    cout << "test_vector_insert execution time: " << time_aken << endl;
-    PROFILE(test_vector_find(), time_aken);
-    cout << "test_vector_find execution time: " << time_aken << endl;
+    PROFILE(test_vector_push(), time_aken);
+    cout << "test_vector_push copies: " << TotalCopyOperations() << endl;
+    cout << "test_vector_push execution time: " << time_aken << endl;
+    PROFILE(test_vector_pop(), time_aken);
+    cout << "test_vector_pop execution time: " << time_aken << endl;
 
     empData1.reserve(gSampleSize);
 
-    PROFILE(test_reserved_vector_insert(), time_aken);
-    cout << "test_reserved_vector_insert copies: " << TotalCopyOperations() << endl;
-    cout << "test_reserved_vector_insert execution time: " << time_aken << endl;
-    PROFILE(test_reserved_vector_find(), time_aken);
-    cout << "test_reserved_vector_find execution time: " << time_aken << endl;
+    PROFILE(test_reserved_vector_push(), time_aken);
+    cout << "test_reserved_vector_push copies: " << TotalCopyOperations() << endl;
+    cout << "test_reserved_vector_push execution time: " << time_aken << endl;
+    PROFILE(test_reserved_vector_pop(), time_aken);
+    cout << "test_reserved_vector_pop execution time: " << time_aken << endl;
 
     return 0;
 }
