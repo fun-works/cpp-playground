@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.10) 
- 
+cmake_minimum_required(VERSION 3.10)
 project(profile_map)
+
+include (cmake/helper.cmake)
 
 enable_testing()
  
