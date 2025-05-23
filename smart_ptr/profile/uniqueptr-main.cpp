@@ -3,6 +3,8 @@
 
 #include "test.hpp"
 
+void testUniquePointer(void);
+
 void testUniquePointer() {
     std::unique_ptr<Test> uniquePtr(new Test());
     printf("%p\n", reinterpret_cast<void *>(uniquePtr.get()));
@@ -10,7 +12,7 @@ void testUniquePointer() {
     printf("%p\n", reinterpret_cast<void *>(uniquePtr1.get()));
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[]) {
     testUniquePointer();
     return 0;
 }

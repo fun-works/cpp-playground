@@ -3,6 +3,8 @@
 
 #include "test.hpp"
 
+void testRawPointer(void);
+
 void testRawPointer() {
     Test* rawPtr = new Test();
     printf("%p\n", reinterpret_cast<void *>(rawPtr));
@@ -12,7 +14,7 @@ void testRawPointer() {
     delete rawPtr1;
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[]) {
     testRawPointer();
     return 0;
 }
