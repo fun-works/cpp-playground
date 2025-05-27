@@ -1,5 +1,6 @@
 #include <memory>
 #include <cstdio>
+#include <cstring>
 
 void testArray(void);
 
