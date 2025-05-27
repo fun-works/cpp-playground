@@ -9,6 +9,7 @@ add_subdirectory(maps/profile)
 add_subdirectory(vectors/profile)
 add_subdirectory(smart_ptr/profile)
 add_subdirectory(array/profile)
+add_subdirectory(string/custom)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
   add_subdirectory(threads/profile) 
