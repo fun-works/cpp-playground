@@ -9,6 +9,7 @@ int main() {
         name.append(", world!");
     }
 
-    std::cout << name.c_str() << std::endl;
+    printf("String: %s\n", name.c_str());
+    
     return 0;
 }
