@@ -8,3 +8,14 @@ function(print_size target)
         VERBATIM
     )
 endfunction()
+
+# Macro to add map file generation for a target
+macro(enable_map_file_for_target target_name)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        set(MAP_FILE "${CMAKE_CURRENT_BINARY_DIR}/${target_name}.map")
+        target_link_options(${target_name} PRIVATE "-Wl,-Map=${MAP_FILE}")
+    elseif(MSVC)
+        set(MAP_FILE "${CMAKE_CURRENT_BINARY_DIR}/${target_name}.map")
+        target_link_options(${target_name} PRIVATE "/MAP:${MAP_FILE}")
+    endif()
+endmacro()
