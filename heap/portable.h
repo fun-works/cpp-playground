@@ -1,20 +1,6 @@
 
 #ifndef PLATFORM_POSIX_PORTABLE_H_
  #define PLATFORM_POSIX_PORTABLE_H_
-
- #include <stddef.h>
- #include <stdlib.h>
- #include <string.h>
- #include <stdio.h>
- #include <unistd.h>
- #include <errno.h>
- #include <limits.h>
- #include <sys/types.h>
- #include <sys/stat.h>
- #include <fcntl.h>
- #include <signal.h>
- #include <pthread.h>
-#include <stdint.h>
  
  #define PRIVILEGED_FUNCTION
  
