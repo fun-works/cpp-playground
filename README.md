@@ -1,2 +1,2 @@
 # my-cpp
-Contains useful CPP code snippet
+The repo aims to profile various C and C++ functionalities.
