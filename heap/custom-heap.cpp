@@ -1,24 +1,29 @@
 /*
-        OpenRTOS V10.2.1
-        Copyright (C) 2019 Amazon Web Services.
-
-        This file is part of the OpenRTOS product.
-
-        OpenRTOS is distributed exclusively by WITTENSTEIN high integrity
-   systems, and is subject to the terms of the License granted to your
-   organization, including its warranties and limitations on use, copying and
-   distribution.
-
-        Licenses authorize use by processor, compiler, business unit, and
-   product.
-
-        WITTENSTEIN high integrity systems is a trading name of WITTENSTEIN
-        aerospace & simulation ltd, Registered Office: Brown's Court, Long
-   Ashton Business Park, Yanley Lane, Long Ashton, Bristol, BS41 9LB, UK. Tel:
-   +44 (0) 1275 395 600. E-mail: info@HighIntegritySystems.com
-
-        http://www.HighIntegritySystems.com
-*/
+ * FreeRTOS Kernel V10.2.1
+ * Copyright (C) 2019 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * http://www.FreeRTOS.org
+ * http://aws.amazon.com/freertos
+ *
+ * 1 tab == 4 spaces!
+ */
 
 /*
  * A sample implementation of pvPortMalloc() and vPortFree() that combines
