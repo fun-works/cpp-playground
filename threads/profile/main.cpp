@@ -1,7 +1,3 @@
-// We want the full POSIX and C99 standard
-#define _GNU_SOURCE
-
-// Standard UNIX includes
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
