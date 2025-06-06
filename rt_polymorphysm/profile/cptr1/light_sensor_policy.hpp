@@ -1,0 +1,5 @@
+#ifndef LIGHT_SENSOR_POLICY_HPP
+#define LIGHT_SENSOR_POLICY_HPP
+
+
+#endif
