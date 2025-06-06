@@ -3,18 +3,16 @@
 
 #include <cstdio>
 #include <cstdint>
+#include "sensor_interface.hpp"
 
 struct TempSensor {
-    float offset = 0;
-
-    void init() {
-        offset = 1.0f;
-        printf("[TempSensor] Initialized\n");
+    void init(uint8_t mode) {
+        printf("[TempSensor] Init with mode: %d\n", mode);
     }
 
     bool read(float& out) {
-        out = 25.0f + offset;
-        printf("[TempSensor] Read: %.2f\n", out);
+        out = 25.0f;
+        printf("[TempSensor] Read value: %.2f\n", out);
         return true;
     }
 
@@ -23,17 +21,11 @@ struct TempSensor {
     }
 
     SensorT to_interface() {
-        return SensorT{
-            .context = this,
-            .init = [](void* ctx) {
-                static_cast<TempSensor*>(ctx)->init();
-            },
-            .read = [](void* ctx, float& out) {
-                return static_cast<TempSensor*>(ctx)->read(out);
-            },
-            .shutdown = [](void* ctx) {
-                static_cast<TempSensor*>(ctx)->shutdown();
-            }
+        return {
+            this,
+            [](void* ctx) { static_cast<TempSensor*>(ctx)->init(0); },
+            [](void* ctx, float& out) { return static_cast<TempSensor*>(ctx)->read(out); },
+            [](void* ctx) { static_cast<TempSensor*>(ctx)->shutdown(); }
         };
     }
 };

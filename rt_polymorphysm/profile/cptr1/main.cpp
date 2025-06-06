@@ -1,7 +1,3 @@
-#include "sensor_interface.hpp"
-#include "sensor_policy.hpp"
-#include "temp_sensor_policy.hpp"
-#include "light_sensor_policy.hpp"
 #include "temp_sensor.hpp"
 #include "light_sensor.hpp"
 
@@ -16,17 +12,17 @@ void use_sensor(SensorT& sensor) {
 
 // ======= Main =======
 int main() {
-    TemperatureSensor temp;
-    PressureSensor pressure;
+    TempSensor ts;
+    LightSensor ls;
 
-    SensorT tempIf = temp.to_interface();
-    SensorT pressureIf = pressure.to_interface();
+    SensorT tsIf = ts.to_interface();
+    SensorT lsIf = ls.to_interface();
 
-    printf("\n== Temperature Sensor ==\n");
-    use_sensor(tempIf);
+    printf("\n== Temp Sensor ==\n");
+    use_sensor(tsIf);
 
-    printf("\n== Pressure Sensor ==\n");
-    use_sensor(pressureIf);
+    printf("\n== Light Sensor ==\n");
+    use_sensor(lsIf);
 
     return 0;
 }

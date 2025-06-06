@@ -3,6 +3,7 @@
 
 #include <cstdio>
 #include <cstdint>
+#include "sensor_interface.hpp"
 
 struct LightSensor {
     float bias = 0;
@@ -23,17 +24,11 @@ struct LightSensor {
     }
 
     SensorT to_interface() {
-        return SensorT{
-            .context = this,
-            .init = [](void* ctx) {
-                static_cast<LightSensor*>(ctx)->init();
-            },
-            .read = [](void* ctx, float& out) {
-                return static_cast<LightSensor*>(ctx)->read(out);
-            },
-            .shutdown = [](void* ctx) {
-                static_cast<LightSensor*>(ctx)->shutdown();
-            }
+        return {
+            this,
+            [](void* ctx) { static_cast<LightSensor*>(ctx)->init(); },
+            [](void* ctx, float& out) { return static_cast<LightSensor*>(ctx)->read(out); },
+            [](void* ctx) { static_cast<LightSensor*>(ctx)->shutdown(); }
         };
     }
 };
