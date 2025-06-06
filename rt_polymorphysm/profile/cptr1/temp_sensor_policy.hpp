@@ -1,0 +1,5 @@
+#ifndef TEMP_SENSOR_POLICY_HPP
+#define TEMP_SENSOR_POLICY_HPP
+
+
+#endif
