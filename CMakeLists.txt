@@ -9,6 +9,7 @@ include (cmake/helper.cmake)
 enable_testing()
  
 add_subdirectory(maps)
+add_subdirectory(etlcpp)
 add_subdirectory(vectors)
 add_subdirectory(smart_ptr)
 add_subdirectory(array)
